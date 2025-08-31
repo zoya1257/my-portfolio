@@ -1,0 +1,23 @@
+name: portfolio 
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: Ubuntu-latest
+    steps:    
+    - name: chechout
+      uses: actions/checkout@v1
+
+    - name: configure aws credential
+      uses: aws-actions/configure-aws-credentials@v1
+      aws-region: us-east-1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: Deploy static site to s3 bucket
+      run: aws s3 sync . s3://tws-github-actions-demo --delete
