@@ -19,5 +19,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
     - name: Delete all files and bucket
-  run: |
-    aws s3 rb s3://simple-asma-bucket --force
+      run: aws s3 rb s3://simple-asma-bucket --force
+    
